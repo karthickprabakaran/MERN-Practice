@@ -26,3 +26,6 @@ import key from './api.js';
 // console.log(user1.age);
 
 
+function transformToObjects(numberArray) {
+    return numberArray.map(item => ({ val: item }));
+}
