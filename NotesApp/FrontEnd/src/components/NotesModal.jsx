@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function NotesModal({closeModal}) {
+function NotesModal({closeModal, addNote}) {
 
     const navigate = useNavigate();
 const [title,setTitle] = useState('');
@@ -13,18 +13,14 @@ const handleSubmit = async(e)=>
         e.preventDefault()
 
         try{
-            const response = await axios.post('http://localhost:3000/api/note/add',{title, description});
-            if(response.data.success){
-                navigate('/');
-                closeModal
-            }
-        }
-        catch(error){
+            addNote(title, description);
+        }catch(error){
             console.log(error);
+            
         }
-
-
     };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
